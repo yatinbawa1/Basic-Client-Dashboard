@@ -2,8 +2,8 @@ import React from "react";
 import { UserContext } from "../../data/UserProvider";
 import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import Pagination from "../Pagination/Pagination";
-import NoData from "./NoData";
 import UserItem from "./UserItem";
+import EmptyState from "../EmptyState/EmptyState.jsx";
 
 function UserList({ searchData }) {
   const [filteredData, setFilteredData] = React.useState([]);
@@ -25,7 +25,15 @@ function UserList({ searchData }) {
     );
   }, [searchData, data]);
 
-  if (!filteredData || filteredData.length === 0) return <NoData />;
+  if (!filteredData || filteredData.length === 0)
+    return (
+      <EmptyState
+        image="/No Data Icon.png"
+        alt="No Data"
+        message="No Users Available"
+        messageClass="text-gray-500"
+      />
+    );
 
   return (
     <div className="mt-8 grid gap-6">

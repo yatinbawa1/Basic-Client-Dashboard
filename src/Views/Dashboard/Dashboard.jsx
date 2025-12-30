@@ -4,23 +4,22 @@ import Loading from "../../Components/Loading/Loading.jsx";
 import UserList from "../../Components/UserList/UserList.jsx";
 import { UserContext } from "../../data/UserProvider.jsx";
 
-function Dashboard({ onReady, searchData }) {
+function Dashboard({ searchData }) {
   const [dataLoading, setDataLoading] = React.useState(true);
   const { data, setData } = React.useContext(UserContext);
 
   useEffect(() => {
-    // Notify navbar that dashboard is ready and it can show search bar
-    onReady(true);
-    console.log("Dashboard search data", searchData);
     async function load() {
       setDataLoading(true);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const res = await axios.get("https://dummyjson.com/users?limit=50");
-
-      // Set user data
-      setData(res.data.users);
-
+      try {
+        const res = await axios.get("https://dummyjson.com/users?limit=50");
+        // Set user data
+        setData(res.data.users);
+      } catch (error) {
+        navigate("/error", { replace: true });
+        return;
+      }
       // Data loading finished
       setDataLoading(false);
     }

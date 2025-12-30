@@ -3,15 +3,23 @@ import logo from "../../assets/Logo.svg";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { SearchOutlined } from "@mui/icons-material";
 import PrimaryButton from "../Button/PrimaryButton";
+import { useLocation, Link } from "react-router-dom";
 
-function Navbar({ ready, searchState }) {
+function Navbar({ searchState }) {
+  const location = useLocation();
+  const isDashboard = location.pathname === "/";
+  const isUser = location.pathname.startsWith("/user/");
+  const userPreview = location.state;
+  console.log("Navbar userPreview:", userPreview);
   return (
     <div className="flex w-full items-center gap-4 bg-white p-4 text-2xl shadow-md transition-all">
-      <div className="logo hidden md:block">
-        <img src={logo} alt="Logo" className="h-8" />
+      <div className={`logo ${isDashboard ? "hidden" : "block"} md:block`}>
+        <Link to="/">
+          <img src={logo} alt="Logo" className="h-8" />
+        </Link>
       </div>
 
-      {ready && (
+      {isDashboard && (
         <div className="flex flex-1 gap-4">
           <div className="text-secondary flex flex-1 items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-3xl transition-all focus-within:shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
             <SearchOutlined />
@@ -28,6 +36,17 @@ function Navbar({ ready, searchState }) {
             text="Add User"
             onClick={() => {}}
           />
+        </div>
+      )}
+
+      {isUser && userPreview && (
+        <div className="ml-auto flex items-center gap-3 rounded-md px-4 py-2 shadow-sm">
+          <img
+            src={userPreview.image}
+            alt={userPreview.name}
+            className="h-15 w-15 rounded-full object-cover"
+          />
+          <span className="text-base font-medium">{userPreview.name}</span>
         </div>
       )}
     </div>
