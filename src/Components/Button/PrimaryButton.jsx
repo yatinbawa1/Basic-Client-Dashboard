@@ -9,7 +9,7 @@ function PrimaryButton({
   bold = true,
   size = "md",
   className,
-  collapsable,
+  collapsable = "true",
 }) {
   const sizeClasses = {
     sm: "p-2 sm:text-sm md:text-base",
