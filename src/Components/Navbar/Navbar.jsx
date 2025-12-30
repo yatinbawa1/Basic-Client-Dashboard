@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../assets/Logo.svg";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { SearchOutlined } from "@mui/icons-material";
+import PrimaryButton from "../Button/PrimaryButton";
 
 function Navbar({ ready, searchState }) {
   return (
@@ -23,11 +24,11 @@ function Navbar({ ready, searchState }) {
             />
           </div>
 
-          <button className="bg-secondary flex items-center gap-2 rounded-md p-4 font-bold text-white transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:shadow-xl active:-translate-y-0.5 sm:text-xl md:text-2xl">
-            {" "}
-            <PersonAddOutlinedIcon fontSize="1" />
-            <div className="hidden sm:block">Add User</div>
-          </button>
+          <PrimaryButton
+            Icon={PersonAddOutlinedIcon}
+            text="Add User"
+            onClick={() => {}}
+          />
         </div>
       )}
     </div>
