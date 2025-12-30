@@ -1,5 +1,5 @@
-import React from "react";
-
+// Skeleton similar in the form to
+// Usercard in dashboard
 function Skeleton() {
   return (
     <div className="h-20 rounded-md bg-gray-300">

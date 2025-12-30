@@ -6,12 +6,13 @@ function UserItem({ user }) {
   const navigate = useNavigate();
 
   return (
+    // moves to user page
     <div
       onClick={() => {
         navigate(`/user/${user.id}`, {
           replace: false,
           state: {
-            name: `${user.firstName} ${user.lastName}`,
+            name: fullName,
             image: user.image,
           },
         });

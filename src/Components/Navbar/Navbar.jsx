@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/Logo.svg";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { SearchOutlined } from "@mui/icons-material";
@@ -26,7 +25,7 @@ function Navbar({ searchState }) {
 
       {isDashboard && (
         <div className="flex flex-1 gap-4">
-          <div className="text-secondary flex flex-1 items-center gap-2 rounded-md border-gray-300 px-4 py-2 text-3xl transition-all focus-within:shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
+          <div className="text-secondary flex flex-1 items-center gap-2 rounded-md border-gray-300 px-4 py-2 text-3xl shadow-sm transition-all focus-within:shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
             <SearchOutlined />
             <input
               type="text"

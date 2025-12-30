@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../data/UserProvider";
 import Input from "../../Components/Input/Input.jsx";
@@ -63,6 +63,7 @@ function AddUser() {
         name: form.companyName,
       },
       role: "user",
+      // Default value
       image:
         form.image.trim() !== ""
           ? form.image

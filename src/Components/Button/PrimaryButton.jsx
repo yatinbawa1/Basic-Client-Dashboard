@@ -23,11 +23,15 @@ function PrimaryButton({
     <button
       onClick={onClick}
       style={{ backgroundColor: color }}
-      className={`${className} flex gap-2 rounded-md ${sizeClasses[size]} ${fontWeight} text-white transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:shadow-xl active:-translate-y-0.5`}
+      className={`${className} flex items-center gap-2 rounded-md ${sizeClasses[size]} ${fontWeight} text-white transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:shadow-xl active:-translate-y-0.5`}
     >
-      {iconPosition === "left" && Icon && <Icon fontSize="1" />}
+      {iconPosition === "left" && Icon && (
+        <Icon fontSize="1" className="flex-shrink-0" />
+      )}
       <div className={collapsable ? "hidden sm:block" : "block"}>{text}</div>
-      {iconPosition === "right" && Icon && <Icon fontSize="1" />}
+      {iconPosition === "right" && Icon && (
+        <Icon fontSize="1" className="flex-shrink-0" />
+      )}
     </button>
   );
 }

@@ -6,24 +6,28 @@ import { UserContext } from "../../data/UserProvider.jsx";
 
 function Dashboard({ searchData }) {
   const [dataLoading, setDataLoading] = React.useState(true);
+  // User Data
   const { data, setData } = React.useContext(UserContext);
 
-  useEffect(() => {
-    async function load() {
-      setDataLoading(true);
-      if (!data) {
-        try {
-          const res = await axios.get("https://dummyjson.com/users?limit=50");
-          // Set user data
-          setData(res.data.users);
-        } catch (error) {
-          navigate("/error", { replace: true });
-          return;
-        }
+  async function load() {
+    setDataLoading(true);
+    // This check is there
+    // to not reload data on every navigation to dashboard
+    // that becomes a problem when adding user because UserContext resets
+    if (!data) {
+      try {
+        const res = await axios.get("https://dummyjson.com/users?limit=50");
+        // Set user data
+        setData(res.data.users);
+      } catch (error) {
+        navigate("/error", { replace: true });
+        return;
       }
-      setDataLoading(false);
     }
+    setDataLoading(false);
+  }
 
+  useEffect(() => {
     load();
   }, []);
 

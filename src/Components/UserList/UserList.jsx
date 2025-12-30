@@ -1,20 +1,32 @@
-import React from "react";
 import { UserContext } from "../../data/UserProvider";
+import React from "react";
 import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import Pagination from "../Pagination/Pagination";
 import UserItem from "./UserItem";
 import EmptyState from "../EmptyState/EmptyState.jsx";
 
 function UserList({ searchData }) {
+  // filteredData for search, can use this to add other filters as well as sorting
   const [filteredData, setFilteredData] = React.useState([]);
+  // Current Page in the form of array, changed from pagination component
   const [currentArray, setCurrentArray] = React.useState([]);
+
   const { data } = React.useContext(UserContext);
 
   React.useEffect(() => {
+    if (!data) {
+      setFilteredData([]);
+      return;
+    }
+
+    // if no search then full data
     if (!searchData || searchData.trim() === "") {
       setFilteredData(data);
       return;
     }
+
+    // filter logic
+    // searches name and email
 
     setFilteredData(
       data.filter((user) => {
@@ -25,6 +37,7 @@ function UserList({ searchData }) {
     );
   }, [searchData, data]);
 
+  // no data either because of API faliure or No Data after filter
   if (!filteredData || filteredData.length === 0)
     return (
       <EmptyState

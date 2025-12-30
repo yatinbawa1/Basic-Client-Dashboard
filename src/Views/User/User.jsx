@@ -13,20 +13,21 @@ export function getUserInLink() {
   const { id } = useParams();
   const userId = parseInt(id, 10);
   const { data, setData } = useContext(UserContext);
-
   return data ? data.find((user) => user.id === userId) : null;
 }
 
 function User() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    // fake timer so that loading screen can come up
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   const user = getUserInLink();
 
+  // simple spinner
   if (loading) {
     return <Loader />;
   }

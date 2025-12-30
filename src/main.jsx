@@ -1,14 +1,13 @@
-import { StrictMode, useEffect } from "react";
+import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Views/Dashboard/Dashboard.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import { useState } from "react";
 import UserProvider from "./data/UserProvider.jsx";
-import "./index.css";
 import User from "./Views/User/User.jsx";
 import EmptyState from "./Components/EmptyState/EmptyState.jsx";
 import AddUser from "./Views/AddUser/AddUser.jsx";
+import "./index.css";
 
 function Root() {
   const [searchData, setSearchData] = useState("");
@@ -24,9 +23,9 @@ function Root() {
             <Route path="/" element={<Dashboard searchData={searchData} />} />
             <Route path="/user/:id" element={<User />} />
             <Route path="add-user" element={<AddUser />} />
-            {/* Catchall path */}
+            {/* Error are all transfered to this page */}
             <Route
-              path="*"
+              path="/error"
               element={
                 <EmptyState
                   image="/Error Icon.png"
@@ -36,8 +35,9 @@ function Root() {
                 />
               }
             />
+            {/* Catchall path */}
             <Route
-              path="/error"
+              path="*"
               element={
                 <EmptyState
                   image="/Error Icon.png"
