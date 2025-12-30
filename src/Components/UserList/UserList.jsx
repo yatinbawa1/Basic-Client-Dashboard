@@ -38,7 +38,7 @@ function UserList({ searchData }) {
   return (
     <div className="mt-8 grid gap-6">
       <div className="flex items-center justify-between">
-        <h3 className="text-secondary flex items-center gap-2 text-3xl font-medium">
+        <h3 className="text-accent flex items-center gap-2 text-3xl font-medium">
           <AssignmentIndOutlinedIcon />
           <span>Users</span>
         </h3>

@@ -40,8 +40,9 @@ const Pagination = ({ users, count, className, setCurrentArray }) => {
           onClick={previousPage}
           text="previous"
           size="sm"
+          color="#132440"
         />
-        <span className="text-secondary mx-4 text-xl font-medium sm:text-2xl">
+        <span className="text-accent mx-4 text-xl font-medium sm:text-2xl">
           Page {currentPage} of {Math.ceil(users.length / count)}
         </span>
         <PrimaryButton
@@ -50,6 +51,7 @@ const Pagination = ({ users, count, className, setCurrentArray }) => {
           size="sm"
           onClick={nextPage}
           text="next"
+          color="#132440"
         >
           Next
         </PrimaryButton>

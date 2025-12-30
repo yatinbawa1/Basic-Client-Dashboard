@@ -11,18 +11,19 @@ function Dashboard({ searchData }) {
   useEffect(() => {
     async function load() {
       setDataLoading(true);
-
-      try {
-        const res = await axios.get("https://dummyjson.com/users?limit=50");
-        // Set user data
-        setData(res.data.users);
-      } catch (error) {
-        navigate("/error", { replace: true });
-        return;
+      if (!data) {
+        try {
+          const res = await axios.get("https://dummyjson.com/users?limit=50");
+          // Set user data
+          setData(res.data.users);
+        } catch (error) {
+          navigate("/error", { replace: true });
+          return;
+        }
       }
-      // Data loading finished
       setDataLoading(false);
     }
+
     load();
   }, []);
 

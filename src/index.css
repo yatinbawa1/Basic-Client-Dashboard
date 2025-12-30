@@ -10,5 +10,6 @@
 @theme {
   --color-primary: #67bc2a;
   --color-secondary: #03632c;
+  --color-accent: #132440;
   --font-poppins: "Poppins", sans-serif;
 }

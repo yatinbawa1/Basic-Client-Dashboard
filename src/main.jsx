@@ -8,6 +8,7 @@ import UserProvider from "./data/UserProvider.jsx";
 import "./index.css";
 import User from "./Views/User/User.jsx";
 import EmptyState from "./Components/EmptyState/EmptyState.jsx";
+import AddUser from "./Views/AddUser/AddUser.jsx";
 
 function Root() {
   const [searchData, setSearchData] = useState("");
@@ -22,6 +23,7 @@ function Root() {
           <Routes>
             <Route path="/" element={<Dashboard searchData={searchData} />} />
             <Route path="/user/:id" element={<User />} />
+            <Route path="add-user" element={<AddUser />} />
             {/* Catchall path */}
             <Route
               path="*"
@@ -53,3 +55,5 @@ function Root() {
 }
 
 createRoot(document.getElementById("root")).render(<Root />);
+const loader = document.getElementById("global-loader");
+if (loader) loader.style.display = "none";

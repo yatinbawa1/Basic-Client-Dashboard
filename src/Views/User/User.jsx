@@ -1,7 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { UserContext } from "../../data/UserProvider";
 import { useParams } from "react-router-dom";
 import EmptyState from "../../Components/EmptyState/EmptyState";
+import Loader from "../../Components/Loading/Loader";
 
 // while being able to get user from navigation state,
 // this is example on how to get user data from context based on URL params
@@ -17,14 +18,25 @@ export function getUserInLink() {
 }
 
 function User() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   const user = getUserInLink();
+
+  if (loading) {
+    return <Loader />;
+  }
 
   if (!user) {
     return (
       <EmptyState
         image="/Say No Icon.png"
         alt="Error"
-        message="Unable to access user data from outside. Please go back to Dashboard."
+        message="Unable to access user data."
         messageClass="text-secondary"
       />
     );
@@ -33,18 +45,17 @@ function User() {
   const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
-    <div className="p-6">
+    <div className="mt-8 p-4">
       <div className="mx-auto rounded-md bg-white shadow-md">
         <div
           className={`flex-1 p-4 ${
             user.role === "admin"
-              ? "bg-green-500 text-green-900"
-              : "bg-red-500 text-red-900"
+              ? "bg-green-300 text-green-700"
+              : "bg-red-300 text-red-700"
           } animate-pulse`}
-          title={user.role === "admin" ? "Active" : "Inactive"}
         >
           <span className="flex-1 text-xl font-bold">
-            {user.role === "admin" ? "Active" : "Inactive"}{" "}
+            {user.role === "admin" ? "ACTIVE" : "INACTIVE"}{" "}
           </span>
         </div>
 

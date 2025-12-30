@@ -3,14 +3,19 @@ import logo from "../../assets/Logo.svg";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { SearchOutlined } from "@mui/icons-material";
 import PrimaryButton from "../Button/PrimaryButton";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 
 function Navbar({ searchState }) {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const isDashboard = location.pathname === "/";
   const isUser = location.pathname.startsWith("/user/");
+  const isAddUser = location.pathname == "/add-user";
+  console.log(isAddUser);
   const userPreview = location.state;
-  console.log("Navbar userPreview:", userPreview);
+
   return (
     <div className="flex w-full items-center gap-4 bg-white p-4 text-2xl shadow-md transition-all">
       <div className={`logo ${isDashboard ? "hidden" : "block"} md:block`}>
@@ -34,7 +39,9 @@ function Navbar({ searchState }) {
           <PrimaryButton
             Icon={PersonAddOutlinedIcon}
             text="Add User"
-            onClick={() => {}}
+            onClick={() => {
+              navigate("/add-user");
+            }}
           />
         </div>
       )}
@@ -44,9 +51,21 @@ function Navbar({ searchState }) {
           <img
             src={userPreview.image}
             alt={userPreview.name}
-            className="h-15 w-15 rounded-full object-cover"
+            className="h-12 w-12 rounded-full object-cover"
           />
           <span className="text-base font-medium">{userPreview.name}</span>
+        </div>
+      )}
+      {isAddUser && (
+        <div className="ml-auto">
+          <PrimaryButton
+            color="#132440"
+            Icon={DashboardOutlinedIcon}
+            text="Dashboard"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
         </div>
       )}
     </div>
