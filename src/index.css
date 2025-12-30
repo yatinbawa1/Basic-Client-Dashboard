@@ -3,7 +3,7 @@
 
 @layer base {
   body {
-    @apply bg-[#f5f5f5] text-[#03632c];
+    @apply text-secondary bg-[#f5f5f5];
   }
 }
 

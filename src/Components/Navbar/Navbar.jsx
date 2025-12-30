@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/Logo.svg";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { SearchOutlined } from "@mui/icons-material";
@@ -23,7 +23,6 @@ function Navbar({ ready, searchState }) {
               className="placeholder:text-secondary w-full bg-transparent text-xl focus:outline-none sm:text-xl lg:text-2xl"
             />
           </div>
-
           <PrimaryButton
             Icon={PersonAddOutlinedIcon}
             text="Add User"

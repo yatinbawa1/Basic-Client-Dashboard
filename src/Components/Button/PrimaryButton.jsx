@@ -4,7 +4,7 @@ function PrimaryButton({
   Icon,
   text,
   onClick,
-  color = "secondary",
+  color = "#03632c",
   iconPosition = "left",
   bold = true,
   size = "md",
@@ -20,7 +20,8 @@ function PrimaryButton({
   return (
     <button
       onClick={onClick}
-      className={`bg-${color} flex items-center gap-2 rounded-md ${sizeClasses[size]} ${fontWeight} text-white transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:shadow-xl active:-translate-y-0.5`}
+      style={{ backgroundColor: color }}
+      className={`flex items-center gap-2 rounded-md ${sizeClasses[size]} ${fontWeight} text-white transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:shadow-xl active:-translate-y-0.5`}
     >
       {iconPosition === "left" && Icon && <Icon fontSize="1" />}
       <div className="hidden sm:block">{text}</div>
